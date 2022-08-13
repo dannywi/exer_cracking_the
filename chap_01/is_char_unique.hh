@@ -6,7 +6,7 @@
 #include <unordered_set>
 #include <vector>
 
-#include "utils.hh"
+#include "common/utils.hh"
 
 bool is_char_unique(const std::string& str) {
   std::vector<std::function<bool(const std::string&)>> implementations{

@@ -6,7 +6,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "utils.hh"
+#include "common/utils.hh"
 
 bool is_perm_of(const std::string& str1, const std::string& str2) {
   std::vector<std::function<bool(const std::string&, const std::string&)>> implementations{

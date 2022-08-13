@@ -53,7 +53,7 @@ TEST(url_ify, BasicAssertions) {
 
       buf[new_len - 1] = '\0';
       fn(buf, new_len);
-      EXPECT_EQ(std::string{buf}, expected);
+      EXPECT_STREQ(buf, expected.c_str());
       delete[] buf;
     }
   };

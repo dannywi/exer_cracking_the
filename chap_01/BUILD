@@ -1,11 +1,13 @@
 cc_library(
-  name = "tests",
+  name = "test_files",
   srcs = [
     "is_char_unique.hh",
     "is_perm_of.hh",
     "url_ify.hh",
-    "utils.hh",
-  ]
+  ],
+  deps = [
+    "//common:utils",
+  ],
 )
 
 cc_test(
@@ -13,7 +15,7 @@ cc_test(
   size = "small",
   srcs = ["test_runner.cc"],
   deps = [
-    ":tests",
+    ":test_files",
     "@googletest//:gtest_main",
-    ],
+  ],
 )
