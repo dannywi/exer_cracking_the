@@ -9,6 +9,7 @@ cc_library(
   name = "test_files",
   srcs = [
     "ll_rm_dup.hh",
+    "kth_last.hh",
   ],
   deps = [
     "linked_list",

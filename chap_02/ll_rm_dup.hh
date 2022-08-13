@@ -6,20 +6,43 @@
 #include "common/utils.hh"
 #include "linked_list.hh"
 
+// using cache, n time, n space
 template <typename T>
-void ll_rm_dup1(std::shared_ptr<linked_list<T>> root) {
-  std::shared_ptr<linked_list<T>> curr = root;
-  std::shared_ptr<linked_list<T>> last{nullptr};
+void ll_rm_dup1(typename linked_list<T>::ptr_t node) {
+  typename linked_list<T>::ptr_t last{nullptr};
   std::unordered_set<T> cache;
-  while (curr) {
-    if (cache.find(curr->val) != cache.end()) {
+  while (node) {
+    if (cache.find(node->val) != cache.end()) {
       // duplicate, remove (last can't be null)
-      last->next = curr->next;
-      curr = last->next;
+      last->next = node->next;
     } else {
-      cache.emplace(curr->val);
-      last = curr;
-      curr = curr->next;
+      cache.emplace(node->val);
+      last = node;
     }
+    node = node->next;
+  }
+}
+
+// not using cache, n^2 time, constant space
+template <typename T>
+void ll_rm_dup2(typename linked_list<T>::ptr_t node) {
+  typename linked_list<T>::ptr_t root{node};
+  auto rm_fn = [](typename linked_list<T>::ptr_t p) {
+    T val = p->val;
+    typename linked_list<T>::ptr_t last{p};
+    p = p->next;
+    while (p) {
+      if (p->val == val) {
+        last->next = p->next;
+      } else {
+        last = p;
+      }
+      p = p->next;
+    }
+  };
+
+  while (node) {
+    rm_fn(node);
+    node = node->next;
   }
 }
