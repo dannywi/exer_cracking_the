@@ -41,7 +41,7 @@ TEST(url_ify, BasicAssertions) {
       size_t space_cnt = count_if(in.begin(), in.end(), [](char c) { return c == ' '; }) * 2;
 
       size_t new_len = in.size() + space_cnt + 1;  // +1 for terminating null
-      char *buf = new char[new_len];
+      char buf[new_len];
 
       for (size_t i = 0; i < in.size(); ++i) {
         buf[i] = in[i];
@@ -54,7 +54,6 @@ TEST(url_ify, BasicAssertions) {
       buf[new_len - 1] = '\0';
       fn(buf, new_len);
       EXPECT_STREQ(buf, expected.c_str());
-      delete[] buf;
     }
   };
 
