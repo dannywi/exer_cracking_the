@@ -35,7 +35,7 @@ TEST(queue_with_stacks, BasicAssertions) {
       auto v = cont.peek();
       cont.pop();
       if (cont.empty()) break;
-      if (!comp(v, cont.peek())) return false;
+      if (comp(cont.peek(), v)) return false;
     }
     return true;
   };
@@ -44,7 +44,7 @@ TEST(queue_with_stacks, BasicAssertions) {
   for (size_t i = 0; i < 10; ++i) queue.push(std::rand() % 50 - 25);
 
   auto comp = [](auto a, auto b) -> bool { return a < b; };
-  util::sort_with_stacks(queue, comp);
+  util::sort_with_stacks<decltype(queue)::value_type>(queue, comp);
   EXPECT_TRUE(check_sorted(queue, comp));
   util::flush_queue(queue);
 }

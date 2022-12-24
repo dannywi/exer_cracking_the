@@ -49,6 +49,8 @@ class queue_with_stacks {
   }
 
  public:
+  typedef T value_type;
+
   void push(T v) {
     // notice with the optimization we don't need to shift here
     // just keep stacking new pushes to in_list
@@ -69,8 +71,8 @@ class queue_with_stacks {
 };
 
 namespace util {
-template <typename T, typename COMP>
-void sort_with_stacks(queue_with_stacks<T>& queue, COMP comp) {
+template <typename T>
+void sort_with_stacks(queue_with_stacks<T>& queue, std::function<bool(T, T)> comp) {
   stack<T> tgt, keep;
   while (!queue.empty()) {
     // 1. pop from queue
