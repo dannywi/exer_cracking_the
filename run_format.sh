@@ -1,3 +1,3 @@
 #!/bin/bash
 find . -name BUILD -exec buildifier {} +
-find . -name "*.[hc]pp" -exec clang-format -i {} +
+find . -regex ".*\.[hc]*" -exec clang-format -i {} +

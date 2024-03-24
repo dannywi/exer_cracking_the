@@ -51,7 +51,7 @@ T kth_last2(typename linked_list<T>::ptr_t node, size_t k) {
   typename linked_list<T>::ptr_t b{node};
   while (k-- > 0) {
     b = b->next;
-    if(!b && k > 0) {
+    if (!b && k > 0) {
       throw std::logic_error("k more than nodes");
     }
   }

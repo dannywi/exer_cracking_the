@@ -30,7 +30,7 @@ std::vector<RES> call_implementations(IMPL implementations, ARGS... args) {
   // all results should be the same
   RES* last = nullptr;
   for (auto curr : results) {
-    if(last && last != curr) {
+    if (last && last != curr) {
       throw std::logic_error("different results");
     }
     last = &curr;
